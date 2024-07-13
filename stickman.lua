@@ -4,7 +4,7 @@ Stickman.__index = Stickman
 -- Constants
 local SCREEN_WIDTH = 800
 local SCREEN_HEIGHT = 600
-local MAN_WIDTH = 200  -- Desired width of the man images
+local MAN_WIDTH = 250  -- Desired width of the man images
 local MAN_HEIGHT = 200  -- Desired height of the man images
 local MOVE_SPEED = 1000  -- Speed in pixels per second
 local ANIMATION_DELAY = 0.1  -- Time in seconds per frame
@@ -24,7 +24,7 @@ function Stickman.new(position)
     self.man_run1_img = love.graphics.newImage(image_path .. "man-run1.png")
     self.man_run2_img = love.graphics.newImage(image_path .. "man-run2.png")
     self.man_run3_img = love.graphics.newImage(image_path .. "man-run3.png")
-
+    self.ak = false
     -- Group all images in a table for easy access
     self.man_images = { self.man_run1_img, self.man_run2_img, self.man_run3_img }
 
@@ -58,6 +58,18 @@ end
 
 -- Method to update animation and movement
 function Stickman:updateAnimation(dt)
+
+
+    if self.ak == true then
+        local image_path = "man/"
+        self.man_stand_img = love.graphics.newImage(image_path .. "man-ak-stand.png")
+        self.man_run1_img = love.graphics.newImage(image_path .. "man-ak-run.png")
+        self.man_run2_img = love.graphics.newImage(image_path .. "man-ak-run2.png")
+        self.man_run3_img = love.graphics.newImage(image_path .. "man-ak-run3.png")
+        self.man_images = { self.man_run1_img, self.man_run2_img, self.man_run3_img }
+    end
+
+
     if self.is_moving then
         if self.animation_counter >= ANIMATION_DELAY then
             self.animation_counter = 0
